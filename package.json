@@ -1,11 +1,12 @@
 {
-  "name": "insecta-flash-card",
+  "name": "insecta-flash-cards",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:docs": "tsc && vite build && mv dist docs || move dist docs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
