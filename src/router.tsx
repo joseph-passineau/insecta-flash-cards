@@ -11,7 +11,7 @@ const Root = createRootRoute({
 
 const IndexRoute = createRoute({
 	getParentRoute: () => Root,
-	path: '/',
+	path: '/insecta-flash-cards/',
 	component: Home,
 })
 
