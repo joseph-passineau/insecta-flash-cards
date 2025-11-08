@@ -53,27 +53,13 @@ type OccurrenceSearchResponse = {
 	}>
 }
 
-// Offset cap no longer needed when using shuffle
-
-// Fixed list of Insecta orders to sample from (provided by user)
-const INSECTA_ORDER_KEYS: number[] = [
-	1187, 800, 9715801, 9740118, 1470, 1224, 9660324, 811, 584, 9810633, 1225, 9511639, 585, 809, 1457, 9735645, 797,
-	788, 1226, 1000,
-]
-
-function pickRandomOrderKey(): number {
-	const i = Math.floor(Math.random() * INSECTA_ORDER_KEYS.length)
-	return INSECTA_ORDER_KEYS[i]!
-}
+const INSECTA_KEY: number = 216;
 
 async function getRandomSpecies(): Promise<Species> {
-	// Use occurrence search shuffle to avoid offset/count logic.
-	// Docs: https://techdocs.gbif.org/en/openapi/v1/occurrence#/Searching%20occurrences/searchOccurrence
 	const maxAttempts = 12
 	for (let attempt = 0; attempt < maxAttempts; attempt++) {
-		const orderKey = pickRandomOrderKey()
 		const seed = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)
-		const occUrl = `${GBIF_BASE}/occurrence/search?media_type=StillImage&taxonomicStatus=ACCEPTED&basisOfRecord=MACHINE_OBSERVATION&basisOfRecord=LIVING_SPECIMEN&basisOfRecord=HUMAN_OBSERVATION&isExtinct=false&taxon_key=${orderKey}&limit=1&shuffle=${seed}`
+		const occUrl = `${GBIF_BASE}/occurrence/search?media_type=StillImage&taxonomicStatus=ACCEPTED&basisOfRecord=MACHINE_OBSERVATION&basisOfRecord=LIVING_SPECIMEN&basisOfRecord=HUMAN_OBSERVATION&isExtinct=false&taxon_key=${INSECTA_KEY}&limit=1&shuffle=${seed}`
 		const data = await fetchJson<OccurrenceSearchResponse>(occUrl)
 		const occ = data.results?.[0]
 		if (!occ) continue

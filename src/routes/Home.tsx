@@ -84,6 +84,15 @@ export default function Home() {
 											</p>
 										) : null}
 									</div>
+									<div className="mt-4">
+										<button
+											onClick={handleNext}
+											disabled={isFetching}
+											className="w-full rounded-full bg-neutral-200 px-4 py-2 text-neutral-900 disabled:opacity-60"
+										>
+											Next
+										</button>
+									</div>
 								</div>
 							) : (
 								<button
@@ -101,13 +110,6 @@ export default function Home() {
 			<div className="sticky bottom-0 z-10 bg-neutral-950/80 px-4 py-3 backdrop-blur">
 				<div className="flex items-center justify-between gap-2">
 					<span className="text-xs text-neutral-500">Data from GBIF public API</span>
-					<button
-						onClick={handleNext}
-						disabled={isFetching}
-						className="rounded-full bg-neutral-200 px-4 py-2 text-neutral-900 disabled:opacity-60"
-					>
-						Next
-					</button>
 				</div>
 			</div>
 		</main>
