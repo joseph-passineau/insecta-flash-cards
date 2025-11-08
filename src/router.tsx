@@ -1,12 +1,10 @@
 import { createRootRoute, createRoute, createRouter, RouterProvider, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import Home from './routes/Home'
 
 const Root = createRootRoute({
 	component: () => (
 		<div className="min-h-dvh bg-neutral-950 text-neutral-100">
 			<Outlet />
-			<TanStackRouterDevtools position="bottom-right" />
 		</div>
 	),
 })
